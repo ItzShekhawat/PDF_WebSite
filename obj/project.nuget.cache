@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zoNzrZnQn+Rv/byHpPH0JSj3bGlGQ5cTMQ+RXV9JCjF7LCbKCsb12Lsdls84Xzhtx2ezrXTIoSaA6zXo55KdiQ==",
+  "dgSpecHash": "oq+BwovFz+3ZLhm7qTEWNShv0j4AmVypr7lRANoFLCmuRpFXnfNo4TOWmr5jbhzzGJcp/mC0/WHRJZITk8cLAQ==",
   "success": true,
-  "projectFilePath": "Z:\\Portale_PDF_Recode\\PDF_Portal_Azure_AD\\PDF_Portal_Azure_AD.csproj",
+  "projectFilePath": "Z:\\PDF_WebSite\\PDF_Portal_Azure_AD.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\shekhawat.karni.sing\\.nuget\\packages\\azure.core\\1.6.0\\azure.core.1.6.0.nupkg.sha512",
     "C:\\Users\\shekhawat.karni.sing\\.nuget\\packages\\azure.identity\\1.3.0\\azure.identity.1.3.0.nupkg.sha512",

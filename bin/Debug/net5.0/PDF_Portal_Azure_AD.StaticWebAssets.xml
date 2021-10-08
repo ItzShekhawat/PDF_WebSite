@@ -1,4 +1,4 @@
 ﻿<StaticWebAssets Version="1.0">
-  <ContentRoot BasePath="/" Path="Z:\Portale_PDF_Recode\PDF_Portal_Azure_AD\obj\Debug\net5.0\scopedcss\bundle\" />
+  <ContentRoot BasePath="/" Path="Z:\PDF_WebSite\obj\Debug\net5.0\scopedcss\bundle\" />
   <ContentRoot BasePath="_content/MudBlazor" Path="C:\Users\shekhawat.karni.sing\.nuget\packages\mudblazor\5.1.5\build\..\staticwebassets\" />
 </StaticWebAssets>

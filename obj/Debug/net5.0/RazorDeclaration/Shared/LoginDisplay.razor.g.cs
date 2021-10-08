@@ -13,133 +13,133 @@ namespace PDF_Portal_Azure_AD.Shared
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "Z:\Portale_PDF_Recode\PDF_Portal_Azure_AD\_Imports.razor"
+#line 1 "Z:\PDF_WebSite\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "Z:\Portale_PDF_Recode\PDF_Portal_Azure_AD\_Imports.razor"
+#line 2 "Z:\PDF_WebSite\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "Z:\Portale_PDF_Recode\PDF_Portal_Azure_AD\_Imports.razor"
+#line 3 "Z:\PDF_WebSite\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "Z:\Portale_PDF_Recode\PDF_Portal_Azure_AD\_Imports.razor"
+#line 4 "Z:\PDF_WebSite\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "Z:\Portale_PDF_Recode\PDF_Portal_Azure_AD\_Imports.razor"
+#line 5 "Z:\PDF_WebSite\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "Z:\Portale_PDF_Recode\PDF_Portal_Azure_AD\_Imports.razor"
+#line 6 "Z:\PDF_WebSite\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "Z:\Portale_PDF_Recode\PDF_Portal_Azure_AD\_Imports.razor"
+#line 7 "Z:\PDF_WebSite\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "Z:\Portale_PDF_Recode\PDF_Portal_Azure_AD\_Imports.razor"
+#line 8 "Z:\PDF_WebSite\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "Z:\Portale_PDF_Recode\PDF_Portal_Azure_AD\_Imports.razor"
+#line 9 "Z:\PDF_WebSite\_Imports.razor"
 using PDF_Portal_Azure_AD;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "Z:\Portale_PDF_Recode\PDF_Portal_Azure_AD\_Imports.razor"
+#line 10 "Z:\PDF_WebSite\_Imports.razor"
 using PDF_Portal_Azure_AD.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "Z:\Portale_PDF_Recode\PDF_Portal_Azure_AD\_Imports.razor"
+#line 11 "Z:\PDF_WebSite\_Imports.razor"
 using MudBlazor;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "Z:\Portale_PDF_Recode\PDF_Portal_Azure_AD\_Imports.razor"
+#line 12 "Z:\PDF_WebSite\_Imports.razor"
 using System.IO;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "Z:\Portale_PDF_Recode\PDF_Portal_Azure_AD\_Imports.razor"
+#line 13 "Z:\PDF_WebSite\_Imports.razor"
 using System.Text;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "Z:\Portale_PDF_Recode\PDF_Portal_Azure_AD\_Imports.razor"
+#line 14 "Z:\PDF_WebSite\_Imports.razor"
 using System.IdentityModel.Tokens.Jwt;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "Z:\Portale_PDF_Recode\PDF_Portal_Azure_AD\_Imports.razor"
+#line 15 "Z:\PDF_WebSite\_Imports.razor"
 using Microsoft.IdentityModel.Tokens;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "Z:\Portale_PDF_Recode\PDF_Portal_Azure_AD\_Imports.razor"
+#line 16 "Z:\PDF_WebSite\_Imports.razor"
 using System.Net.Http.Json;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 17 "Z:\Portale_PDF_Recode\PDF_Portal_Azure_AD\_Imports.razor"
+#line 17 "Z:\PDF_WebSite\_Imports.razor"
 using Newtonsoft.Json;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 18 "Z:\Portale_PDF_Recode\PDF_Portal_Azure_AD\_Imports.razor"
+#line 18 "Z:\PDF_WebSite\_Imports.razor"
 using PortalModels;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 19 "Z:\Portale_PDF_Recode\PDF_Portal_Azure_AD\_Imports.razor"
+#line 19 "Z:\PDF_WebSite\_Imports.razor"
 using PDF_Portal_Azure_AD.Data;
 
 #line default
@@ -153,7 +153,7 @@ using PDF_Portal_Azure_AD.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 25 "Z:\Portale_PDF_Recode\PDF_Portal_Azure_AD\Shared\LoginDisplay.razor"
+#line 25 "Z:\PDF_WebSite\Shared\LoginDisplay.razor"
       
 
 

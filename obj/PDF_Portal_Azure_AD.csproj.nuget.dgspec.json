@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "Z:\\Portale_PDF_Recode\\PDF_Portal_Azure_AD\\PDF_Portal_Azure_AD.csproj": {}
+    "Z:\\PDF_WebSite\\PDF_Portal_Azure_AD.csproj": {}
   },
   "projects": {
-    "Z:\\Portale_PDF_Recode\\PDF_Portal_Azure_AD\\PDF_Portal_Azure_AD.csproj": {
+    "Z:\\PDF_WebSite\\PDF_Portal_Azure_AD.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "Z:\\Portale_PDF_Recode\\PDF_Portal_Azure_AD\\PDF_Portal_Azure_AD.csproj",
+        "projectUniqueName": "Z:\\PDF_WebSite\\PDF_Portal_Azure_AD.csproj",
         "projectName": "PDF_Portal_Azure_AD",
-        "projectPath": "Z:\\Portale_PDF_Recode\\PDF_Portal_Azure_AD\\PDF_Portal_Azure_AD.csproj",
+        "projectPath": "Z:\\PDF_WebSite\\PDF_Portal_Azure_AD.csproj",
         "packagesPath": "C:\\Users\\shekhawat.karni.sing\\.nuget\\packages\\",
-        "outputPath": "Z:\\Portale_PDF_Recode\\PDF_Portal_Azure_AD\\obj\\",
+        "outputPath": "Z:\\PDF_WebSite\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
