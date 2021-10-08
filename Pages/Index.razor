@@ -1,0 +1,26 @@
+﻿@page "/"
+@inject NavigationManager Navigation
+
+<AuthorizeView>
+    <Authorized>
+        Hello, @context.User.Identity.Name !
+
+        @if (context.User.IsInRole("Admin") || context.User.IsInRole("User"))
+        {
+            <MudPaper Elevation="0" Class="pa-4" Style="height:400px; width:1000px; background-color:cadetblue">
+                <h2>Procedere alla pagina successiva -></h2>
+                <a style="font-size:larger" href="/clients/" >PDFs</a>
+            </MudPaper>
+        }
+
+    </Authorized>
+    <NotAuthorized>
+        <MudPaper Elevation="0" Class="pa-4" Style="height:400px; width:500px; background-color:cadetblue">
+            <div class="d-none d-lg-block mud-theme-tertiary rounded" style="height:100%; width:100%;">
+                <h1>Utente non loggato, proceda al LogIn </h1>
+                <a href="/">Log in</a>
+            </div>
+        </MudPaper>
+    </NotAuthorized>
+</AuthorizeView>
+

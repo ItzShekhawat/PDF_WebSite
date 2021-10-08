@@ -1,0 +1,84 @@
+﻿@page "/view/suborder/{FK_Father}"
+@inject HttpClient Http
+@using System.Net.Http.Json
+@inject HttpClient httpClient
+@inject NavigationManager NavigationManager
+@inject CustomIDataProtection CustomProtection
+
+<AuthorizeView Roles="User, Admin">
+    <Authorized Context="user_context">
+        <MudTable Items="suborders" Hover="true" Bordered="true" Filter="new Func<GenericFF_Model, bool>(FilterFunc)">
+            <ColGroup>
+                <col style="width: 80%;" />
+                <col />
+            </ColGroup>
+            <ToolBarContent>
+                <MudText Typo="Typo.h6">Table Suborder</MudText>
+                <MudSpacer />
+                <MudTextField T="string" @bind-Value="searchString" Placeholder="Search" Adornment="Adornment.Start"
+                              AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+            </ToolBarContent>
+            <HeaderContent>
+                <MudTh> <MudIcon Style="font-size: 30px" Icon="@Icons.Filled.Folder" /> Folder</MudTh>
+                <MudTh> <MudIcon Style="font-size: 30px" Icon="@Icons.Filled.Folder" /> Origin</MudTh>
+
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd DataLabel="Folder_name" @onclick="()=>clicked(context.FF_Name)">@context.FF_Name</MudTd>
+                <MudTd DataLabel="Father_Name" @onclick="()=>clicked(context.FF_Name)">@context.FK_Father</MudTd>
+            </RowTemplate>
+            <NoRecordsContent>
+                <MudText>No matching records found</MudText>
+            </NoRecordsContent>
+            <LoadingContent>
+                <MudText>Loading...</MudText>
+            </LoadingContent>
+        </MudTable>
+
+    </Authorized>
+    <NotAuthorized>
+        <MudAlert> Please Login</MudAlert>
+        <MudButton OnClick="()=>NavigationManager.NavigateTo(goback)">Back to Login </MudButton>
+    </NotAuthorized>
+</AuthorizeView>
+
+
+@code
+{
+    [Parameter]
+    public string FK_Father { get; set; }
+
+    public List<GenericFF_Model> suborders = null;
+    public string searchString = "";
+    string goback = "/";
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        FK_Father = CustomProtection.Encode(FK_Father);
+        FK_Father = FK_Father.Replace("+", "[").Replace("'", "]");
+        FK_Father = CustomProtection.Decode(FK_Father);
+        suborders = await httpClient.GetFromJsonAsync<List<GenericFF_Model>>(@"https://localhost:44315/api/Views/suborder?father_name=" + CustomProtection.Encode(FK_Father));
+
+        //Console.WriteLine("https://localhost:44315/api/Folders/");
+
+
+    }
+
+    private void clicked(string father_name)
+    {
+        NavigationManager.NavigateTo("view/PDF/" + CustomProtection.Decode(father_name));
+    }
+
+    private bool FilterFunc(GenericFF_Model element)
+    {
+        if (string.IsNullOrWhiteSpace(searchString))
+            return true;
+        if (element.FF_Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+        if ($"{element.Location_path} {element.FK_Father} ".Contains(searchString))
+            return true;
+        return false;
+    }
+
+}

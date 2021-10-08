@@ -1,0 +1,147 @@
+﻿@page "/clients/"
+@using System.Net.Http.Json
+@inject HttpClient httpClient
+@inject NavigationManager NavigationManager
+@inject CustomIDataProtection CustomProtection
+
+
+<AuthorizeView Roles="User, Admin">
+    <Authorized Context="user_context">
+        <MudItem xs="12" sm="12" md="12" Style="padding:10px">
+            <MudTextField T="string" @bind-Value="Search" Immediate="true" @onkeypress="Enter" Label="Ricerca per commessa o descrizione" Variant="Variant.Outlined" minlength="3" Adornment="Adornment.Start" AdornmentIcon="@Icons.Filled.Search" AdornmentColor="Color.Dark" />
+        </MudItem>
+
+        <br />
+        <br />
+
+        <MudTable Items="TableModel" Hover="true" Bordered="true" Filter="new Func<GenericFF_Model, bool>(FilterFunc)">
+            <ToolBarContent>
+                <MudText Typo="Typo.h6">Tabella Clients</MudText>
+                <MudSpacer />
+                <MudTextField T="string" @bind-Value="searchString" Placeholder="Search" Adornment="Adornment.Start"
+                              AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+            </ToolBarContent>
+            <HeaderContent>
+                <MudTh> <MudIcon Style="font-size: 20px" Icon="@Icons.Rounded.FolderOpen" /> Folder</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd DataLabel="Folder_name" @onclick="() => clicked(context.FF_Name, context.FK_Father)">@context.FF_Name</MudTd>
+            </RowTemplate>
+            <NoRecordsContent>
+                <MudText>No matching records found</MudText>
+            </NoRecordsContent>
+            <LoadingContent>
+                <MudText>Loading...</MudText>
+            </LoadingContent>
+        </MudTable>
+    </Authorized>
+    <NotAuthorized>
+        <MudAlert> Please Login</MudAlert>
+        <MudButton OnClick="()=>NavigationManager.NavigateTo(goback)">Back to Login </MudButton>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    [Parameter]
+    public string Table_Name { get; set; }
+
+    [Parameter]
+    public string FK_Father { get; set; } = "Commesse";
+
+
+    // Public var
+    public List<GenericFF_Model> TableModel = new();
+    public string InfoMessage { get; set; }
+    public string searchString = "";
+    public string Search = "";
+    string goback = "/";
+
+
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        FK_Father = Uri.EscapeDataString(FK_Father);
+        TableModel = await httpClient.GetFromJsonAsync<List<GenericFF_Model>>(@"https://localhost:44315/api/Views/client?father_name=Commesse");
+
+        #region " Heavy Code"
+        /*
+        #region "API Request and Response"
+        // Preparing the httpRequestMessage to handle my request
+        HttpRequestMessage httpRequestMessage = new();
+        httpRequestMessage.Method = new HttpMethod("GET");
+        httpRequestMessage.RequestUri = new Uri(@"https://localhost:44315/api/Folders/");
+
+
+        var response = await Http.SendAsync(httpRequestMessage);
+
+        var responseStatusCode = response.StatusCode;
+        var responseBody = await response.Content.ReadAsStringAsync();
+
+        #endregion
+
+        if (responseStatusCode.ToString() == "OK") // If the user credentials are legit it will be true
+        {
+            LoginMessage = "Yes List";
+            clients = JsonConvert.DeserializeObject<List<ClientModel>>(responseBody);
+        }
+        else
+        {
+            LoginMessage = "No List";
+        }
+
+        */
+        #endregion
+
+    }
+
+    private bool FilterFunc(GenericFF_Model element)
+    {
+        if (string.IsNullOrWhiteSpace(searchString))
+            return true;
+        if (element.FF_Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+        if ($"{element.Location_path} {element.FK_Father} ".Contains(searchString))
+            return true;
+        return false;
+    }
+
+
+
+    private void clicked(string Father_Name, string Father_Key)
+    {
+        if (Father_Key != "Commesse")
+        {
+            NavigationManager.NavigateTo("view/suborder/" + CustomProtection.Decode(Father_Name));
+        }
+        else
+        {
+            NavigationManager.NavigateTo("view/orders/" + CustomProtection.Decode(Father_Name));
+        }
+    }
+
+
+
+    private async Task Search_Main(string Search)
+    {
+        if (Search.Count() > 0)
+        {
+            TableModel = await httpClient.GetFromJsonAsync<List<GenericFF_Model>>(@"https://localhost:44315/api/Views/ordersCheck/" + Search);
+            StateHasChanged();//Refresh the component
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/clients/");
+        }
+    }
+
+    public async Task Enter(KeyboardEventArgs e)
+    {
+        if (e.Code == "Enter" || e.Code == "NumpadEnter")
+        {
+            await Search_Main(Search);
+        }
+    }
+
+
+}

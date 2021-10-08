@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDF_Portal_Azure_AD", "PDF_Portal_Azure_AD.csproj", "{0C39A5A8-24F4-4220-A309-6D95916560EE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PortalModels", "..\..\WebPortal_PDFs\PDFs_WebPortal\src\PortalModels\PortalModels.csproj", "{F87F0496-A9EC-4388-A515-C402B337F581}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C39A5A8-24F4-4220-A309-6D95916560EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C39A5A8-24F4-4220-A309-6D95916560EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C39A5A8-24F4-4220-A309-6D95916560EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C39A5A8-24F4-4220-A309-6D95916560EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F87F0496-A9EC-4388-A515-C402B337F581}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F87F0496-A9EC-4388-A515-C402B337F581}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F87F0496-A9EC-4388-A515-C402B337F581}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F87F0496-A9EC-4388-A515-C402B337F581}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {395B342D-ACF2-4917-BC33-A0E6F4A94A8B}
+	EndGlobalSection
+EndGlobal

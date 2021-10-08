@@ -1,0 +1,29 @@
+﻿@inherits LayoutComponentBase
+@inject NavigationManager Navigation
+
+
+<MudLayout>
+    <MudAppBar Elevation="1" Style="@($"Background:{Colors.Blue.Darken4}; padding:0px;")">
+        <img src="~/logoEPF.png" />
+        <MudText Typo="Typo.h5" Class="ml-0" @onclick ="RidirectToHome" Style="cursor:pointer">Portale EPF</MudText>
+        <MudContainer style="justify-content: end; width: 100%; display: flex; flex-direction:row; margin : 0px;">
+            <LoginDisplay />
+        </MudContainer>
+    </MudAppBar>
+    <MudMainContent Style="height:100vh; width:100%;">
+        @Body
+    </MudMainContent>
+</MudLayout>
+
+
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+@code{
+    private void RidirectToHome()
+    {
+        Navigation.NavigateTo("/clients/");
+    }
+}
+
