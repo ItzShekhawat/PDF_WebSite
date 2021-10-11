@@ -139,6 +139,13 @@ using PDF_Portal_Azure_AD.Data;
 #line hidden
 #nullable disable
 #nullable restore
+#line 20 "Z:\PDF_WebSite\_Imports.razor"
+using Microsoft.AspNetCore.Http;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "Z:\PDF_WebSite\Pages\Clients.razor"
 using System.Net.Http.Json;
 
@@ -162,6 +169,8 @@ using System.Net.Http.Json;
     [Parameter]
     public string FK_Father { get; set; } = "Commesse";
 
+    [CascadingParameter]
+    private Task<AuthenticationState> AuthenticationStateTask { get; set; }
 
     // Public var
     public List<GenericFF_Model> TableModel = new();
@@ -171,12 +180,20 @@ using System.Net.Http.Json;
     string goback = "/";
 
 
-
+    string api_uri = @"https://localhost:44315";
 
     protected async override Task OnInitializedAsync()
     {
+        var authenticationState = await AuthenticationStateTask;
+
+        if (authenticationState?.User?.Identity is null || !authenticationState.User.Identity.IsAuthenticated)
+        {
+            NavigationManager.NavigateTo("/", true);
+
+        }
+
         FK_Father = Uri.EscapeDataString(FK_Father);
-        TableModel = await httpClient.GetFromJsonAsync<List<GenericFF_Model>>(@"https://localhost:44315/api/Views/client?father_name=Commesse");
+        TableModel = await httpClient.GetFromJsonAsync<List<GenericFF_Model>>(api_uri+@"/api/Views/client?father_name=Commesse");
 
     }
 
@@ -211,7 +228,7 @@ using System.Net.Http.Json;
     {
         if (Search.Count() > 0)
         {
-            TableModel = await httpClient.GetFromJsonAsync<List<GenericFF_Model>>(@"https://localhost:44315/api/Views/ordersCheck/" + Search);
+            TableModel = await httpClient.GetFromJsonAsync<List<GenericFF_Model>>(api_uri+@"/api/Views/ordersCheck/" + Search);
             StateHasChanged();//Refresh the component
         }
         else

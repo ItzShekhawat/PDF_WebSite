@@ -5,14 +5,9 @@
     <Authorized>
         Hello, @context.User.Identity.Name !
         Your role is : @context.User.IsInRole("Admin")!
-
-        @if (context.User.IsInRole("Admin") || context.User.IsInRole("User"))
-        {
-            <MudPaper Elevation="0" Class="pa-4" Style="height:400px; width:1000px; background-color:cadetblue">
-                <h2>Procedere alla pagina successiva -></h2>
-                <a style="font-size:larger" href="/clients/" >PDFs</a>
-            </MudPaper>
-        }
+        <!-- Usare per un controllo su Role del user-->
+        @if (context.User.IsInRole("Admin") || context.User.IsInRole("User")) { }
+  
 
     </Authorized>
     <NotAuthorized>
@@ -24,4 +19,30 @@
         </MudPaper>
     </NotAuthorized>
 </AuthorizeView>
+
+@code
+{
+    // Questo ci permette di accedere al user.claims authenticato or non-Autenticato 
+    [CascadingParameter]
+    private Task<AuthenticationState> AuthenticationStateTask { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authenticationState = await AuthenticationStateTask;
+
+        if (authenticationState?.User?.Identity is null || !authenticationState.User.Identity.IsAuthenticated)
+        {
+            Navigation.NavigateTo("/", true);
+
+        }else if (authenticationState?.User?.IsInRole("Admin") == true || authenticationState?.User?.IsInRole("User") == true)
+        {
+            // Se ha l'accesso ed è di ruolo puù subito procedere alla pagina successiva
+            Navigation.NavigateTo("/clients/", true);
+        }
+        else
+        {
+            Navigation.NavigateTo("/", true);
+        }
+    }
+}
 

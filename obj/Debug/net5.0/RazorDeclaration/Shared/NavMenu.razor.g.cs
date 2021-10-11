@@ -145,6 +145,13 @@ using PDF_Portal_Azure_AD.Data;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 20 "Z:\PDF_WebSite\_Imports.razor"
+using Microsoft.AspNetCore.Http;
+
+#line default
+#line hidden
+#nullable disable
     public partial class NavMenu : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

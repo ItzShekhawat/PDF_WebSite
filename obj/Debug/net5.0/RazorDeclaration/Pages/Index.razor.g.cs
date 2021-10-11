@@ -145,6 +145,13 @@ using PDF_Portal_Azure_AD.Data;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 20 "Z:\PDF_WebSite\_Imports.razor"
+using Microsoft.AspNetCore.Http;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/")]
     public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -153,6 +160,35 @@ using PDF_Portal_Azure_AD.Data;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 24 "Z:\PDF_WebSite\Pages\Index.razor"
+ 
+    // Questo ci permette di accedere al user.claims authenticato or non-Autenticato 
+    [CascadingParameter]
+    private Task<AuthenticationState> AuthenticationStateTask { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authenticationState = await AuthenticationStateTask;
+
+        if (authenticationState?.User?.Identity is null || !authenticationState.User.Identity.IsAuthenticated)
+        {
+            Navigation.NavigateTo("/", true);
+
+        }else if (authenticationState?.User?.IsInRole("Admin") == true || authenticationState?.User?.IsInRole("User") == true)
+        {
+            // Se ha l'accesso ed è di ruolo puù subito procedere alla pagina successiva
+            Navigation.NavigateTo("/clients/", true);
+        }
+        else
+        {
+            Navigation.NavigateTo("/", true);
+        }
+    }
+
+#line default
+#line hidden
+#nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager Navigation { get; set; }
     }
 }

@@ -22,4 +22,8 @@
     <ProjectReference Include="..\..\WebPortal_PDFs\PDFs_WebPortal\src\PortalModels\PortalModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Logs\" />
+  </ItemGroup>
+
 </Project>

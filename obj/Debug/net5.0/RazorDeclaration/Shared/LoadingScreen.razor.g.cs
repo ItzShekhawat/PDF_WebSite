@@ -145,6 +145,13 @@ using PDF_Portal_Azure_AD.Data;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 20 "Z:\PDF_WebSite\_Imports.razor"
+using Microsoft.AspNetCore.Http;
+
+#line default
+#line hidden
+#nullable disable
     public partial class LoadingScreen : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -162,7 +169,7 @@ using PDF_Portal_Azure_AD.Data;
 
     protected override async Task OnInitializedAsync()
     {
-        await Task.Delay(10000); // TODO actual initialization job
+        await Task.Delay(1000); // TODO actual initialization job
         isLoaded = true;
     }
 

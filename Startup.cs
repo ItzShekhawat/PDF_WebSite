@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,15 +42,17 @@ namespace PDF_Portal_Azure_AD
             services.AddSingleton<UniqueCode>();
             services.AddSingleton<CustomIDataProtection>();
 
+            // Just saying that the token contains custom claims too
             JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
             #endregion
 
-
+            // The Configuration that handles the OIDC Authentication 
             services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAd"))
                 .EnableTokenAcquisitionToCallDownstreamApi(new string[] { "User.Read" })
                 .AddInMemoryTokenCaches();
 
+            // This will block the whole site, and it will require an authorized user to access any page of the site
             services.AddControllersWithViews(options =>
             {
                 var policy = new AuthorizationPolicyBuilder()
@@ -64,6 +67,7 @@ namespace PDF_Portal_Azure_AD
             services.AddServerSideBlazor()
                 .AddMicrosoftIdentityConsentHandler();
 
+            // Just configure the claims I need from the access token 
             services.Configure<OpenIdConnectOptions>(OpenIdConnectDefaults.AuthenticationScheme, options =>
             {
                 // The claim in the Jwt token where App roles are available.
@@ -87,14 +91,19 @@ namespace PDF_Portal_Azure_AD
                 app.UseHsts();
             }
 
+            // This configuartion gets active when the user is logf-out form the site and the OIDC leaves the user on a blank page( after cleaning the cookie)
             app.Use(async (context, next) => {
                 if (context.Request.Path
                         .Equals("/signout-oidc", System.StringComparison.OrdinalIgnoreCase))
                 {
                     context.Response.Redirect("/");
 
+                }else if (context.Request.Path
+                        .Equals("/signin-oidc", System.StringComparison.OrdinalIgnoreCase))
+                {
+                    context.Response.Redirect("/clients/");
                 }
-                await next();
+                await next.Invoke();
             });
 
             app.UseHttpsRedirection();
