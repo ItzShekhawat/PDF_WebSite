@@ -189,14 +189,15 @@ using System.Net.Http.Json;
         if (authenticationState?.User?.Identity is null || !authenticationState.User.Identity.IsAuthenticated)
         {
             NavigationManager.NavigateTo("/", true);
-
         }
 
+        // Recupero la lista dei nomi in base al nome della foreign key (commesse) 
         FK_Father = Uri.EscapeDataString(FK_Father);
         TableModel = await httpClient.GetFromJsonAsync<List<GenericFF_Model>>(api_uri+@"/api/Views/client?father_name=Commesse");
 
     }
 
+    // Controlla se la scritta ricercata apprare anche i tutti i elementi del modello che si sta filtrando
     private bool FilterFunc(GenericFF_Model element)
     {
         if (string.IsNullOrWhiteSpace(searchString))
@@ -233,8 +234,8 @@ using System.Net.Http.Json;
         }
         else
         {
-            NavigationManager.NavigateTo("/clients/");
-            StateHasChanged();
+            NavigationManager.NavigateTo("/clients/", forceLoad: true);
+
         }
     }
 
