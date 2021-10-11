@@ -178,35 +178,6 @@ using System.Net.Http.Json;
         FK_Father = Uri.EscapeDataString(FK_Father);
         TableModel = await httpClient.GetFromJsonAsync<List<GenericFF_Model>>(@"https://localhost:44315/api/Views/client?father_name=Commesse");
 
-        #region " Heavy Code"
-        /*
-        #region "API Request and Response"
-        // Preparing the httpRequestMessage to handle my request
-        HttpRequestMessage httpRequestMessage = new();
-        httpRequestMessage.Method = new HttpMethod("GET");
-        httpRequestMessage.RequestUri = new Uri(@"https://localhost:44315/api/Folders/");
-
-
-        var response = await Http.SendAsync(httpRequestMessage);
-
-        var responseStatusCode = response.StatusCode;
-        var responseBody = await response.Content.ReadAsStringAsync();
-
-        #endregion
-
-        if (responseStatusCode.ToString() == "OK") // If the user credentials are legit it will be true
-        {
-            LoginMessage = "Yes List";
-            clients = JsonConvert.DeserializeObject<List<ClientModel>>(responseBody);
-        }
-        else
-        {
-            LoginMessage = "No List";
-        }
-
-        */
-        #endregion
-
     }
 
     private bool FilterFunc(GenericFF_Model element)
@@ -246,6 +217,7 @@ using System.Net.Http.Json;
         else
         {
             NavigationManager.NavigateTo("/clients/");
+            StateHasChanged();
         }
     }
 

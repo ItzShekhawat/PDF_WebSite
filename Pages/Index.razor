@@ -4,6 +4,7 @@
 <AuthorizeView>
     <Authorized>
         Hello, @context.User.Identity.Name !
+        Your role is : @context.User.IsInRole("Admin")!
 
         @if (context.User.IsInRole("Admin") || context.User.IsInRole("User"))
         {

@@ -11,6 +11,7 @@ using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using MudBlazor.Services;
 using PDF_Portal_Azure_AD.Data;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace PDF_Portal_Azure_AD
 {
@@ -40,11 +41,14 @@ namespace PDF_Portal_Azure_AD
             services.AddSingleton<UniqueCode>();
             services.AddSingleton<CustomIDataProtection>();
 
+            JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
             #endregion
 
 
             services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-        .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAd"));
+                .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAd"))
+                .EnableTokenAcquisitionToCallDownstreamApi(new string[] { "User.Read" })
+                .AddInMemoryTokenCaches();
 
             services.AddControllersWithViews(options =>
             {
@@ -53,12 +57,20 @@ namespace PDF_Portal_Azure_AD
                     .Build();
                 options.Filters.Add(new AuthorizeFilter(policy));
             });
+
             services.AddRazorPages()
                  .AddMicrosoftIdentityUI();
 
             services.AddServerSideBlazor()
                 .AddMicrosoftIdentityConsentHandler();
-            
+
+            services.Configure<OpenIdConnectOptions>(OpenIdConnectDefaults.AuthenticationScheme, options =>
+            {
+                // The claim in the Jwt token where App roles are available.
+                options.TokenValidationParameters.RoleClaimType = "roles";
+                options.TokenValidationParameters.NameClaimType = "name";
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,6 +87,16 @@ namespace PDF_Portal_Azure_AD
                 app.UseHsts();
             }
 
+            app.Use(async (context, next) => {
+                if (context.Request.Path
+                        .Equals("/signout-oidc", System.StringComparison.OrdinalIgnoreCase))
+                {
+                    context.Response.Redirect("/");
+
+                }
+                await next();
+            });
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -89,6 +111,8 @@ namespace PDF_Portal_Azure_AD
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                endpoints.MapBlazorHub();
+                endpoints.MapFallbackToPage("/_Host");
             });
 
         }
