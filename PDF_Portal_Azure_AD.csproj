@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blazored.SessionStorage" Version="2.1.0" />
+    <PackageReference Include="Blazored.SessionStorage" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.10" NoWarn="NU1605" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.10" NoWarn="NU1605" />
@@ -16,6 +16,7 @@
     <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.18.0" />
     <PackageReference Include="MudBlazor" Version="5.1.5" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Runtime.Extensions" Version="4.3.1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,6 +6,7 @@
 @inject CustomIDataProtection CustomProtection
 
 
+
 <AuthorizeView Roles="User, Admin">
     <Authorized Context="user_context">
         <MudTable Items="pdf_files" Hover="true" Bordered="true" Filter="new Func<PDF_FileModel, bool>(FilterFunc)">
@@ -56,7 +57,7 @@
     public string searchString = "";
     string goback = "/";
 
-
+    //Quando questa pagina viene chiamata, faccio una prima call per ricavare la foreign key collegata al riga del file pdf interessato. 
     protected async override Task OnInitializedAsync()
     {
         pdf_folders = await httpClient.GetFromJsonAsync<List<PDFModel>>("https://localhost:44315/api/Views/pdf?father_name=" + CustomProtection.Encode(FK_Father));
@@ -88,6 +89,11 @@
         NavigationManager.NavigateTo(@"https://localhost:44315/api/Views/streamPDF?File_path=" + CustomProtection.Encode(path));
 
 
+    }
+    // Not using 
+    public static string DecodeServerName(string encodedServername)
+    {
+        return Encoding.UTF8.GetString(Convert.FromBase64String(encodedServername));
     }
 
 

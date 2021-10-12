@@ -168,7 +168,7 @@ using Microsoft.AspNetCore.Mvc;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 50 "Z:\PDF_WebSite\Pages\PDF.razor"
+#line 51 "Z:\PDF_WebSite\Pages\PDF.razor"
  
     [Parameter]
     public string FK_Father { get; set; }
@@ -178,7 +178,7 @@ using Microsoft.AspNetCore.Mvc;
     public string searchString = "";
     string goback = "/";
 
-
+    //Quando questa pagina viene chiamata, faccio una prima call per ricavare la foreign key collegata al riga del file pdf interessato. 
     protected async override Task OnInitializedAsync()
     {
         pdf_folders = await httpClient.GetFromJsonAsync<List<PDFModel>>("https://localhost:44315/api/Views/pdf?father_name=" + CustomProtection.Encode(FK_Father));
@@ -210,6 +210,11 @@ using Microsoft.AspNetCore.Mvc;
         NavigationManager.NavigateTo(@"https://localhost:44315/api/Views/streamPDF?File_path=" + CustomProtection.Encode(path));
 
 
+    }
+    // Not using 
+    public static string DecodeServerName(string encodedServername)
+    {
+        return Encoding.UTF8.GetString(Convert.FromBase64String(encodedServername));
     }
 
 

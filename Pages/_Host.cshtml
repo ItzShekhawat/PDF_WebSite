@@ -19,6 +19,13 @@
     <link href="PDF_Portal_Azure_AD.styles.css" rel="stylesheet" />
 </head>
 <body>
+    <script>
+        function OpenPDFHidingPath() {
+            window.open('@Url.Action("OpenPDF", "Home")', "", "width=700,height=600")
+        }
+    </script>
+
+
     <component type="typeof(App)" render-mode="ServerPrerendered" />
 
     <div id="blazor-error-ui">
