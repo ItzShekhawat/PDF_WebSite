@@ -126,7 +126,7 @@ using Newtonsoft.Json;
 #nullable disable
 #nullable restore
 #line 18 "Z:\PDF_WebSite\_Imports.razor"
-using PortalModels;
+using PDF_Portal_Azure_AD.Models;
 
 #line default
 #line hidden
@@ -177,15 +177,16 @@ using Microsoft.AspNetCore.Mvc;
     public List<PDFModel> pdf_folders = null;
     public string searchString = "";
     string goback = "/";
+    string api_url = GlobalStorage.APIurl;
 
     //Quando questa pagina viene chiamata, faccio una prima call per ricavare la foreign key collegata al riga del file pdf interessato. 
     protected async override Task OnInitializedAsync()
     {
-        pdf_folders = await httpClient.GetFromJsonAsync<List<PDFModel>>("https://localhost:44315/api/Views/pdf?father_name=" + CustomProtection.Encode(FK_Father));
-        foreach (var pdf in pdf_folders)
+        pdf_folders = await httpClient.GetFromJsonAsync<List<PDFModel>>(api_url+"/api/Views/pdf?father_name=" + CustomProtection.Encode(FK_Father));
+        foreach (var pdf in pdf_folders)// Verrà eseguito solo una volta perchè esiste solo una cartella pdf per sottocommessa
         {
 
-            pdf_files = await httpClient.GetFromJsonAsync<List<PDF_FileModel>>("https://localhost:44315/api/Views/pdf_file/" + pdf.Id.ToString());
+            pdf_files = await httpClient.GetFromJsonAsync<List<PDF_FileModel>>(api_url+"/api/Views/pdf_file/" + pdf.Id.ToString()); // Mi restituisce la lista di tutte le righe associate a quel pdfFolder Key
 
         }
     }
@@ -206,9 +207,7 @@ using Microsoft.AspNetCore.Mvc;
         path = Uri.EscapeDataString(path);
         path = CustomProtection.Decode(path);
 
-
-        NavigationManager.NavigateTo(@"https://localhost:44315/api/Views/streamPDF?File_path=" + CustomProtection.Encode(path));
-
+        NavigationManager.NavigateTo(api_url+@"/api/Views/streamPDF?File_path=" + CustomProtection.Encode(path));
 
     }
     // Not using 

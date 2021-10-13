@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PDF_Portal_Azure_AD", "PDF_Portal_Azure_AD.csproj", "{0C39A5A8-24F4-4220-A309-6D95916560EE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PortalModels", "..\WebPortal_PDFs\PDFs_WebPortal\src\PortalModels\PortalModels.csproj", "{F87F0496-A9EC-4388-A515-C402B337F581}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PortalAPI_Service", "..\WebPortal_PDFs\PDFs_WebPortal\src\PortalAPI_Service\PortalAPI_Service.csproj", "{C52BABF4-4BE0-4825-BDD8-22BF920BC785}"
 EndProject
 Global
@@ -19,10 +17,6 @@ Global
 		{0C39A5A8-24F4-4220-A309-6D95916560EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C39A5A8-24F4-4220-A309-6D95916560EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C39A5A8-24F4-4220-A309-6D95916560EE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F87F0496-A9EC-4388-A515-C402B337F581}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F87F0496-A9EC-4388-A515-C402B337F581}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F87F0496-A9EC-4388-A515-C402B337F581}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F87F0496-A9EC-4388-A515-C402B337F581}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C52BABF4-4BE0-4825-BDD8-22BF920BC785}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C52BABF4-4BE0-4825-BDD8-22BF920BC785}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C52BABF4-4BE0-4825-BDD8-22BF920BC785}.Release|Any CPU.ActiveCfg = Release|Any CPU

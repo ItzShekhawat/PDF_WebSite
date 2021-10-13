@@ -920,16 +920,6 @@
             "rid": "win"
           }
         }
-      },
-      "PortalModels/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
-        "compile": {
-          "bin/placeholder/PortalModels.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/PortalModels.dll": {}
-        }
       }
     }
   },
@@ -2792,11 +2782,6 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
-    },
-    "PortalModels/1.0.0": {
-      "type": "project",
-      "path": "../WebPortal_PDFs/PDFs_WebPortal/src/PortalModels/PortalModels.csproj",
-      "msbuildProject": "../WebPortal_PDFs/PDFs_WebPortal/src/PortalModels/PortalModels.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2810,7 +2795,6 @@
       "Microsoft.Identity.Web.UI >= 1.18.0",
       "MudBlazor >= 5.1.5",
       "Newtonsoft.Json >= 13.0.1",
-      "PortalModels >= 1.0.0",
       "System.Runtime.Extensions >= 4.3.1"
     ]
   },
@@ -2845,11 +2829,7 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {
-            "Z:\\WebPortal_PDFs\\PDFs_WebPortal\\src\\PortalModels\\PortalModels.csproj": {
-              "projectPath": "Z:\\WebPortal_PDFs\\PDFs_WebPortal\\src\\PortalModels\\PortalModels.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

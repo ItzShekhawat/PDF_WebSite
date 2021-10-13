@@ -126,7 +126,7 @@ using Newtonsoft.Json;
 #nullable disable
 #nullable restore
 #line 18 "Z:\PDF_WebSite\_Imports.razor"
-using PortalModels;
+using PDF_Portal_Azure_AD.Models;
 
 #line default
 #line hidden
@@ -169,18 +169,15 @@ using System.Net.Http.Json;
     public List<GenericFF_Model> suborders = null;
     public string searchString = "";
     string goback = "/";
-
+    string api_url = GlobalStorage.APIurl;
 
     protected async override Task OnInitializedAsync()
     {
+        // Sostituisco dei caratteri speciali per una lettura più facile del url e una decode più facile
         FK_Father = CustomProtection.Encode(FK_Father);
         FK_Father = FK_Father.Replace("+", "[").Replace("'", "]");
         FK_Father = CustomProtection.Decode(FK_Father);
-        suborders = await httpClient.GetFromJsonAsync<List<GenericFF_Model>>(@"https://localhost:44315/api/Views/suborder?father_name=" + CustomProtection.Encode(FK_Father));
-
-        //Console.WriteLine("https://localhost:44315/api/Folders/");
-
-
+        suborders = await httpClient.GetFromJsonAsync<List<GenericFF_Model>>(api_url+@"/api/Views/suborder?father_name=" + CustomProtection.Encode(FK_Father));
     }
 
     private void clicked(string father_name)

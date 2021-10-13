@@ -133,7 +133,7 @@ using Newtonsoft.Json;
 #nullable disable
 #nullable restore
 #line 18 "Z:\PDF_WebSite\_Imports.razor"
-using PortalModels;
+using PDF_Portal_Azure_AD.Models;
 
 #line default
 #line hidden
@@ -160,7 +160,7 @@ using Microsoft.AspNetCore.Http;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 38 "Z:\PDF_WebSite\Shared\LoginDisplay.razor"
+#line 39 "Z:\PDF_WebSite\Shared\LoginDisplay.razor"
               
     // Aggioranmento Futuro 
     public string selected_update_Client { get; set; }
@@ -175,7 +175,7 @@ using Microsoft.AspNetCore.Http;
     List<string> PDF_files;
     string encodePath;
     string root_path = @"\\itcar1-ss1\Disegni\SPAC\Commesse";
-    string api_url = "https://localhost:44315";
+    string api_url = GlobalStorage.APIurl;
     string Log_String = " on " + DateTime.Now.ToString("g") + " Updated the DB";
     #endregion
 

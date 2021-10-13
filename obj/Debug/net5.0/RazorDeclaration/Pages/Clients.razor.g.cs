@@ -126,7 +126,7 @@ using Newtonsoft.Json;
 #nullable disable
 #nullable restore
 #line 18 "Z:\PDF_WebSite\_Imports.razor"
-using PortalModels;
+using PDF_Portal_Azure_AD.Models;
 
 #line default
 #line hidden
@@ -179,8 +179,8 @@ using System.Net.Http.Json;
     public string Search = "";
     string goback = "/";
 
-
-    string api_uri = @"https://localhost:44315";
+    // Variabile globale che fornisce la parte fissa del url per collegarsi al API
+    string api_uri = GlobalStorage.APIurl;
 
     protected async override Task OnInitializedAsync()
     {
@@ -210,7 +210,7 @@ using System.Net.Http.Json;
     }
 
 
-
+    // si avvia per passare alla prossima pagina, passando nel url il nome del cliente scelta e cos' filtrando la risposta per la prossima tabella
     private void clicked(string Father_Name, string Father_Key)
     {
         if (Father_Key != "Commesse")
@@ -224,7 +224,7 @@ using System.Net.Http.Json;
     }
 
 
-
+    // Permette di cercare direttamente nella tabella orders, filtrando per parola cercata e non per cliente
     private async Task Search_Main(string Search)
     {
         if (Search.Count() > 0)
@@ -239,6 +239,7 @@ using System.Net.Http.Json;
         }
     }
 
+    // Ascolta il tasto Invio per avviare la ricerca
     public async Task Enter(KeyboardEventArgs e)
     {
         if (e.Code == "Enter" || e.Code == "NumpadEnter")

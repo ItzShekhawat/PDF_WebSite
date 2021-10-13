@@ -8,7 +8,7 @@
         <!-- Solamente chi ha l'accesso da Admin può visualizzare queste funzionalità -->
         @if (context.User.IsInRole("Admin"))
         {
-            <!-- Questa select serve al programma per sapere quale cartella è stata aggioranta dall'Amdin e così aggiornare i file ed eventualmente eliminare file non più esistenti dal DB  -->
+            <!-- Questa select serve al programma per sapere quale cartella è stata aggioranta dall'Amdin e così aggiornare i file ed eventualmente eliminare file non più esistenti dal DB      
             <MudSelect  xs="12" sm="6" md="3" T="string" Label="Catella da Aggiornare" @bind-Value="selected_update_Client" OffsetY="true">
                 @foreach (var client in ClientsList)
                 {
@@ -16,6 +16,7 @@
                     <MudSelectItem Value="client.Split('\\').Last()"></MudSelectItem>
                 }
             </MudSelect>
+            -->
 
             <MudButton Disabled="@_processing" OnClick="(()=>Logging_Admin_Updates(context.User.Identity.Name, Log_String))" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Save" Color="Color.Warning" Style="color: white; margin: 0 5px; font-size: 15px; font-family: Marlett;" FullWidth="false">
                 @if (_processing)
@@ -49,7 +50,7 @@
     List<string> PDF_files;
     string encodePath;
     string root_path = @"\\itcar1-ss1\Disegni\SPAC\Commesse";
-    string api_url = "https://localhost:44315";
+    string api_url = GlobalStorage.APIurl;
     string Log_String = " on " + DateTime.Now.ToString("g") + " Updated the DB";
     #endregion
 
